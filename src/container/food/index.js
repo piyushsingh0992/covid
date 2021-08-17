@@ -1,8 +1,8 @@
 import React from 'react';
-
+import Navbar from "../../components/navbar";
 const Food = () => {
     return (
-        <div>
+        <div><Navbar/>
                   <h1>Food</h1>
         </div>
     );

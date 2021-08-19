@@ -17,6 +17,11 @@ const theme = extendTheme({
         bg: "#efefef",
         color: "black",
       },
+      a: {
+        _hover: {
+          textDecoration: "none !important",
+        },
+      },
     },
   },
 });

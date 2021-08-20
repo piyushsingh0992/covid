@@ -51,7 +51,7 @@ const Navbar = () => {
             </Text>
           </Center>
         </Link>
-        <Link to="/wall-of-hope">
+        <Link to="/plasma">
           <Center w={["50px", "50px", "100px"]}>
           
             <Icon as={GiHealthNormal} w={6} h={6} d={["block", "block", "none"]} />

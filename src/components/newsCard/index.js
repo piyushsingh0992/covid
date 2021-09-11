@@ -3,9 +3,9 @@ import React from "react";
 import { Flex, Text, Image, Heading, Link } from "@chakra-ui/react";
 
 const NewsCard = (props) => {
-  console.log(props);
+  
   const { source, url, urlToImage, title, description } = props;
-  debugger;
+  
   return (
     <Link href={url} isExternal={true}>
       <Flex

@@ -4,35 +4,34 @@ import { Text, Select } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
 import { getCases } from "../../container/home/casesSlice";
 import { Spinner } from "@chakra-ui/react";
-const CovidCases = () => {
+const CovidCases = ({ currentStateDetails, currentStateDetailsSetter }) => {
   const cases = useSelector((state) => state.cases);
   const [loader, loaderSetter] = useState(true);
   const dispatch = useDispatch();
   const [casesDetails, casesDetailsSetter] = useState([]);
   const [currentState, currentStateSetter] = useState("");
-  const [currentStateDetails, currentStateDetailsSetter] = useState({
-    activeCases: "",
-    newInfected: "",
-    recovered: "",
-    newRecovered: "",
-    totalInfected: "",
-    region: "",
-  });
 
   useEffect(() => {
-    let details = casesDetails.find((item) => item.region === currentState);
+    let details = casesDetails.find((item) => item.state === currentState);
     details && currentStateDetailsSetter(details);
   }, [currentState]);
 
   useEffect(() => {
-    if (cases.status === "idle") {
-      dispatch(getCases());
-    } else if (cases.status === "fullfilled") {
-      casesDetailsSetter(cases.casesArray);
-      currentStateSetter(cases.casesArray[0]?.region);
-      loaderSetter(false);
-    } else if (cases.status === "rejected") {
-      loaderSetter(false);
+    currentStateSetter(currentStateDetails.state);
+  }, [currentStateDetails]);
+
+  useEffect(() => {
+    if (loader) {
+      if (cases.status === "idle") {
+        dispatch(getCases());
+      } else if (cases.status === "fullfilled") {
+        casesDetailsSetter(cases.casesArray);
+        currentStateDetailsSetter(cases.casesArray[0]);
+        currentStateSetter(cases.casesArray[0]?.state);
+        loaderSetter(false);
+      } else if (cases.status === "rejected") {
+        loaderSetter(false);
+      }
     }
   }, [cases]);
 
@@ -51,14 +50,14 @@ const CovidCases = () => {
         value={currentState}
       >
         {casesDetails.map((item) => {
-          return <option value={item.region}>{item.region}</option>;
+          return <option value={item.state}>{item.state}</option>;
         })}
       </Select>
       <Grid templateColumns="repeat(5, 1fr)" gap={[2, 2, 6]} my={5}>
         <Box
           textAlign="center"
           w="100%"
-          h={[100,100,150]}
+          h={[100, 100, 150]}
           borderRadius={5}
           boxShadow="md"
           bg="white"
@@ -72,14 +71,14 @@ const CovidCases = () => {
             </Box>
           ) : (
             <Text fontSize={["md", "md", "xl"]} py={2}>
-              {currentStateDetails.totalInfected}
+              {currentStateDetails.confirmed}
             </Text>
           )}
         </Box>
         <Box
           textAlign="center"
           w="100%"
-          h={[100,100,150]}
+          h={[100, 100, 150]}
           borderRadius={5}
           boxShadow="md"
           bg="white"
@@ -93,28 +92,50 @@ const CovidCases = () => {
             </Box>
           ) : (
             <Text fontSize={["md", "md", "xl"]} py={2}>
-              {currentStateDetails.activeCases}
+              {currentStateDetails.active}
             </Text>
           )}
         </Box>
         <Box
           textAlign="center"
           w="100%"
-          h={[100,100,150]}
+          h={[100, 100, 150]}
           borderRadius={5}
           boxShadow="md"
           bg="white"
           p={[2, 2, 4]}
           color="red"
         >
-          <Text fontSize={["md", "md", "2xl"]}>New cases</Text>
+          <Text fontSize={["md", "md", "2xl"]}>total Deaths</Text>
           {loader ? (
             <Box py={3}>
               <Spinner />
             </Box>
           ) : (
             <Text fontSize={["md", "md", "xl"]} py={2}>
-              {currentStateDetails.newInfected}
+              {currentStateDetails.deaths}
+            </Text>
+          )}
+        </Box>
+        <Box
+          textAlign="center"
+          textAlign="center"
+          w="100%"
+          h={[100, 100, 150]}
+          borderRadius={5}
+          boxShadow="md"
+          bg="white"
+          p={[2, 2, 4]}
+          color="red"
+        >
+          <Text fontSize={["md", "md", "2xl"]}>Delta variant Cases</Text>
+          {loader ? (
+            <Box py={3}>
+              <Spinner />
+            </Box>
+          ) : (
+            <Text fontSize={["md", "md", "xl"]} py={2}>
+              {currentStateDetails.deltaconfirmed}
             </Text>
           )}
         </Box>
@@ -123,29 +144,7 @@ const CovidCases = () => {
           textAlign="center"
           textAlign="center"
           w="100%"
-          h={[100,100,150]}
-          borderRadius={5}
-          boxShadow="md"
-          bg="white"
-          p={[2, 2, 4]}
-          color="green"
-        >
-          <Text fontSize={["md", "md", "2xl"]}>New recovered</Text>
-          {loader ? (
-            <Box py={3}>
-              <Spinner />
-            </Box>
-          ) : (
-            <Text fontSize={["md", "md", "xl"]} py={2}>
-              {currentStateDetails.newRecovered}
-            </Text>
-          )}
-        </Box>
-        <Box
-          textAlign="center"
-          textAlign="center"
-          w="100%"
-          h={[100,100,150]}
+          h={[100, 100, 150]}
           borderRadius={5}
           boxShadow="md"
           bg="white"

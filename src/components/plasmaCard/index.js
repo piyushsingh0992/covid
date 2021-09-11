@@ -20,6 +20,7 @@ const PlasmaCard = () => {
           <Text mt={2}>First Negative Report : date 2</Text>
         </Box>
       </Flex>
+      <Text mt={4}>State : B+</Text>
       <Text mt={4}>Blood Group : B+</Text>
       <Text mt={4} fontSize="md">
         any message from doner

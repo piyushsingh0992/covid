@@ -13,7 +13,7 @@ export function useSearchNews(setter) {
           dispatch(getNews(arg));
           setter(true);
         }
-      }, 300)
+      }, 800)
     );
   };
 }

@@ -1,23 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { current } from "immer";
 import axios from "axios";
+import { position } from "../../assets/position";
 export let getCases = createAsyncThunk(
   "cases/getCases",
   async (dummy, { fulfillWithValue, rejectWithValue }) => {
     try {
-      let response = await axios.get(
-        "https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true"
-      );
-      const india = {
-        activeCases: response.data.activeCases,
-        newInfected: response.data.activeCasesNew,
-        recovered: response.data.recovered,
-        newRecovered: response.data.recoveredNew,
-        totalInfected: response.data.totalCases,
-        region: "India",
-      };
-      let casesArray = response.data.regionData;
-      casesArray.unshift(india);
+      let response = await axios.get("https://data.covid19india.org/data.json");
+      let casesArray = response.data.statewise;
+      casesArray[0].state = "India";
+      casesArray = casesArray
+        .map((item) => {
+          item.position = position[item.statecode];
+          return item;
+        })
+        .filter((item) => {
+          return item.statecode !== "UN";
+        });
       return fulfillWithValue({ casesArray });
     } catch (error) {}
     rejectWithValue();
@@ -38,7 +37,6 @@ export const casesSlice = createSlice({
     },
     [getCases.fulfilled]: (state, action) => {
       state.casesArray = action.payload.casesArray;
-
       state.status = "fullfilled";
     },
     [getCases.rejected]: (state, action) => {

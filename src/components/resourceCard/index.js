@@ -4,6 +4,15 @@ import { ImArrowUp } from "react-icons/im";
 import { ImArrowDown } from "react-icons/im";
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
+import { BsThreeDotsVertical } from "react-icons/bs";
+import { AiFillDelete } from "react-icons/ai";
+import { IconButton } from "@chakra-ui/react";
+import {
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+} from "@chakra-ui/react";
 const ResouceCard = () => {
   const [upvoted, upVotedSetter] = useState(false);
   const [downvoted, downVotedSetter] = useState(false);
@@ -14,7 +23,22 @@ const ResouceCard = () => {
         <Text fontSize="xl" fontWeight="bold">
           Cateogry
         </Text>
-        <Text fontSize="lg">Updated: time</Text>
+        <Flex alignItems="center" justifyContent="flex-end">
+          <Text fontSize="lg" m={5}>
+            Updated: time{" "}
+          </Text>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<BsThreeDotsVertical />}
+              variant="outline"
+            />
+            <MenuList>
+              <MenuItem icon={<AiFillDelete />}>Delete</MenuItem>
+            </MenuList>
+          </Menu>
+        </Flex>
       </Flex>
       <Text my={2} fontSize="lg" fontWeight="semibold">
         State

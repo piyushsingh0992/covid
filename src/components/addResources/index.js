@@ -22,9 +22,11 @@ const AddResources = () => {
       toast.error("Please select a cateogry for resource");
       return;
     }
-    
+
     alert("dispatch");
   }
+
+
 
   return (
     <Box bg="white" color="black" my={4} p={4} borderRadius={5}>

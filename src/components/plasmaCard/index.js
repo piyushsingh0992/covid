@@ -13,13 +13,7 @@ const PlasmaCard = () => {
       bg="white"
       borderRadius={5}
     >
-      <Flex alignItems="flex-start" justifyContent="space-between">
-        <Heading fontSize="xl">Piyush Singh</Heading>
-        <Box>
-          <Text>First Positive Report &nbsp; : date 1</Text>
-          <Text mt={2}>First Negative Report : date 2</Text>
-        </Box>
-      </Flex>
+      <Heading fontSize="xl">Piyush Singh</Heading>
       <Text mt={4}>State : B+</Text>
       <Text mt={4}>Blood Group : B+</Text>
       <Text mt={4} fontSize="md">

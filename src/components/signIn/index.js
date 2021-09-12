@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Flex,
   Heading,
@@ -16,15 +16,44 @@ import {
 } from "@chakra-ui/react";
 import logo from "../../assets/brand-icon-2.png";
 import { FaUserAlt, FaLock } from "react-icons/fa";
-
+import { toast } from "react-toastify";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const App = (props) => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [loader, loaderSetter] = useState(false);
   const handleShowClick = () => setShowPassword(!showPassword);
-  const { currentModalSetter } = props;
+  const { currentModalSetter, signInDetails, signInDetailsSetter } = props;
+
+  useEffect(() => {
+    if (loader) {
+      signingIn();
+    }
+  }, [loader]);
+
+  const changeHandler = (event) => {
+    const name = event.target.name;
+    signInDetailsSetter((state) => {
+      return {
+        ...state,
+        [name]: event.target.value,
+      };
+    });
+  };
+
+  function signingIn() {
+    if (signInDetails.email.length < 1) {
+      toast.error("please enter email");
+      return;
+    }
+    if (signInDetails.password.length < 1) {
+      toast.error("please enter password");
+      return;
+    }
+    alert("hey");
+  }
+
   return (
     <Flex
       flexDirection="column"
@@ -55,7 +84,13 @@ const App = (props) => {
                     pointerEvents="none"
                     children={<CFaUserAlt color="gray.300" />}
                   />
-                  <Input type="email" placeholder="email address" />
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="email address"
+                    value={signInDetails.email}
+                    onChange={changeHandler}
+                  />
                 </InputGroup>
               </FormControl>
               <FormControl>
@@ -68,6 +103,9 @@ const App = (props) => {
                   <Input
                     type={showPassword ? "text" : "password"}
                     placeholder="Password"
+                    value={signInDetails.password}
+                    onChange={changeHandler}
+                    name="password"
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
@@ -81,6 +119,9 @@ const App = (props) => {
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={() => {
+                  loaderSetter(true);
+                }}
               >
                 Login
               </Button>
@@ -90,6 +131,13 @@ const App = (props) => {
                 variant="solid"
                 colorScheme="teal"
                 width="full"
+                onClick={() => {
+                  signInDetailsSetter({
+                    email: "",
+                    password: "",
+                  });
+                  loaderSetter(true);
+                }}
               >
                 Login as Guest
               </Button>

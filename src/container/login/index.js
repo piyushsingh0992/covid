@@ -6,14 +6,25 @@ import SignUp from "../../components/signUp";
 import { Routes, Route } from "react-router-dom";
 const Login = () => {
   const [currentModal, currentModalSetter] = useState(true);
+  const [signInDetails, signInDetailsSetter] = useState({
+    email: "",
+    password: "",
+  });
   return (
     <div>
       <Navbar />
       <Container maxWidth={750} my={3}>
         {currentModal ? (
-          <SignIn currentModalSetter={currentModalSetter} />
+          <SignIn
+            currentModalSetter={currentModalSetter}
+            signInDetails={signInDetails}
+            signInDetailsSetter={signInDetailsSetter}
+          />
         ) : (
-          <SignUp currentModalSetter={currentModalSetter} />
+          <SignUp
+            currentModalSetter={currentModalSetter}
+            signInDetailsSetter={signInDetailsSetter}
+          />
         )}
       </Container>
     </div>

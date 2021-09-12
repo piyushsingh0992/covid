@@ -17,6 +17,8 @@ import {
 import logo from "../../assets/brand-icon-2.png";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { toast } from "react-toastify";
+import {MdEmail} from "react-icons/md";
+const CMdEmail=chakra(MdEmail);
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
@@ -82,7 +84,7 @@ const App = (props) => {
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
+                    children={<CMdEmail color="gray.300" />}
                   />
                   <Input
                     type="email"

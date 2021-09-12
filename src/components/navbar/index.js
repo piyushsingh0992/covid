@@ -72,13 +72,15 @@ const Navbar = () => {
               DashBoard
             </Text>
           </Center>
-        </Link>
+          </Link>
+        <Link to="/login">
         <Box w={["50px", "50px", "70px"]}>
           <Icon as={IoLogOut} w={6} h={6} d={["block", "block", "none"]} />
           <Text fontSize="md" d={["none", "none", "block"]}>
-            Logout
+            Login
           </Text>
         </Box>
+        </Link>
       </Flex>
     </Flex>
   );

@@ -13,11 +13,15 @@ import {
   FormControl,
   InputRightElement,
   Image,
+  Select,
 } from "@chakra-ui/react";
 import logo from "../../assets/brand-icon-2.png";
-import { FaUserAlt, FaLock, } from "react-icons/fa";
-import { PhoneIcon } from '@chakra-ui/icons'
+import { FaUserAlt, FaLock } from "react-icons/fa";
+import { PhoneIcon } from "@chakra-ui/icons";
 import { toast } from "react-toastify";
+import { stateData } from "./data";
+import { MdEmail } from "react-icons/md";
+const CMdEmail = chakra(MdEmail);
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
@@ -30,7 +34,8 @@ const SignUp = (props) => {
     name: "",
     email: "",
     password: "",
-    number:""
+    number: "",
+    state: "",
   });
   const changeHandler = (event) => {
     const name = event.target.name;
@@ -45,20 +50,24 @@ const SignUp = (props) => {
 
   function signingUp() {
     if (signUpDetails.name.length < 1) {
-      toast.error("please enter your name");
+      toast.error("Please enter your name");
       return;
     }
     if (signUpDetails.email.length < 1) {
-      toast.error("please enter email");
+      toast.error("Please enter email");
+      return;
+    }
+    if (!signUpDetails.state) {
+      toast.error("Please Select a State");
       return;
     }
 
     if (signUpDetails.number.length < 10) {
-      toast.error("please enter Phone number");
+      toast.error("Please enter Correct contact Number");
       return;
     }
     if (signUpDetails.password.length < 1) {
-      toast.error("please enter password");
+      toast.error("Please enter password");
       return;
     }
 
@@ -112,7 +121,7 @@ const SignUp = (props) => {
                 <InputGroup>
                   <InputLeftElement
                     pointerEvents="none"
-                    children={<CFaUserAlt color="gray.300" />}
+                    children={<CMdEmail color="gray.300" />}
                   />
                   <Input
                     type="email"
@@ -121,6 +130,21 @@ const SignUp = (props) => {
                     value={signUpDetails.email}
                     onChange={changeHandler}
                   />
+                </InputGroup>
+              </FormControl>
+              <FormControl>
+                <InputGroup>
+                  <Select
+                    color="gray.500"
+                    placeholder="Select a State"
+                    valie={signUpDetails.state}
+                    name="state"
+                    onChange={changeHandler}
+                  >
+                    {stateData.map((item) => (
+                      <option value={item}>{item}</option>
+                    ))}
+                  </Select>
                 </InputGroup>
               </FormControl>
 

@@ -2,7 +2,8 @@ import React from "react";
 
 import { Flex, Text, Heading, Button, Box } from "@chakra-ui/react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete,AiFillSave,AiOutlineSave } from "react-icons/ai";
+import {FiShare2} from "react-icons/fi";
 import { IconButton } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 
@@ -47,6 +48,8 @@ const PlasmaCard = () => {
           variant="outline"
         />
         <MenuList>
+        <MenuItem icon={<FiShare2 />}>Copy Link</MenuItem>
+            <MenuItem icon={<AiOutlineSave />}>Save</MenuItem>
           <MenuItem icon={<AiFillDelete />}>Delete</MenuItem>
         </MenuList>
       </Menu>

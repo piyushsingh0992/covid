@@ -10,7 +10,8 @@ import {
 } from "@chakra-ui/react";
 import urlToImage from "../../assets/brand-icon-2.png";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete, AiFillSave, AiOutlineSave } from "react-icons/ai";
+import { FiShare2 } from "react-icons/fi";
 import { IconButton } from "@chakra-ui/react";
 import { Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 
@@ -25,7 +26,7 @@ const NewsCard = (props) => {
       borderRadius={5}
       position="relative"
     >
-      <Box  >
+      <Box>
         <Flex marginBottom={5} as="a">
           <Image
             boxSize="100px"
@@ -64,6 +65,8 @@ const NewsCard = (props) => {
           variant="outline"
         />
         <MenuList>
+          <MenuItem icon={<FiShare2 />}>Copy Link</MenuItem>
+          <MenuItem icon={<AiOutlineSave />}>Save</MenuItem>
           <MenuItem icon={<AiFillDelete />}>Delete</MenuItem>
         </MenuList>
       </Menu>

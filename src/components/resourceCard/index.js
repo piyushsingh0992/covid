@@ -5,7 +5,8 @@ import { ImArrowDown } from "react-icons/im";
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { AiFillDelete } from "react-icons/ai";
+import { AiFillDelete,AiFillSave,AiOutlineSave } from "react-icons/ai";
+import {FiShare2} from "react-icons/fi";
 import { IconButton } from "@chakra-ui/react";
 import {
   Menu,
@@ -35,6 +36,8 @@ const ResouceCard = () => {
               variant="outline"
             />
             <MenuList>
+            <MenuItem icon={<FiShare2 />}>Copy Link</MenuItem>
+            <MenuItem icon={<AiOutlineSave />}>Save</MenuItem>
               <MenuItem icon={<AiFillDelete />}>Delete</MenuItem>
             </MenuList>
           </Menu>

@@ -89,8 +89,6 @@ const AddResources = () => {
           placeholder="Select a State"
           valie={foodDetails.state}
           onChange={(e) => {
-            console.log(e.target.value);
-
             foodDetailsSetter((foodDetails) => {
               return { ...foodDetails, state: e.target.value };
             });

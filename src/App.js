@@ -15,13 +15,18 @@ function App() {
     <div className="App">
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} />
         <Route path="/food" element={<Food />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/plasma" element={<Plasma />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+        <Route path="/login" element={<Login />} /> */}
+
+
+        <Route path="/" element={<Login />} />     
+        
+        
+         </Routes>
     </div>
   );
 }

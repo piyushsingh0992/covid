@@ -1,18 +1,14 @@
 import React from "react";
-
 import {
   Flex,
   Text,
   Image,
-  Heading,
-  Link,
   Box,
   Button,
   UnorderedList,
   ListItem,
 } from "@chakra-ui/react";
 import urlToImage from "../../assets/brand-icon-2.png";
-
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 import { IconButton } from "@chakra-ui/react";

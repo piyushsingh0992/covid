@@ -15,7 +15,8 @@ import {
   Image,
 } from "@chakra-ui/react";
 import logo from "../../assets/brand-icon-2.png";
-import { FaUserAlt, FaLock } from "react-icons/fa";
+import { FaUserAlt, FaLock, } from "react-icons/fa";
+import { PhoneIcon } from '@chakra-ui/icons'
 import { toast } from "react-toastify";
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
@@ -29,6 +30,7 @@ const SignUp = (props) => {
     name: "",
     email: "",
     password: "",
+    number:""
   });
   const changeHandler = (event) => {
     const name = event.target.name;
@@ -48,6 +50,11 @@ const SignUp = (props) => {
     }
     if (signUpDetails.email.length < 1) {
       toast.error("please enter email");
+      return;
+    }
+
+    if (signUpDetails.number.length < 10) {
+      toast.error("please enter Phone number");
       return;
     }
     if (signUpDetails.password.length < 1) {
@@ -112,6 +119,22 @@ const SignUp = (props) => {
                     placeholder="email address"
                     name="email"
                     value={signUpDetails.email}
+                    onChange={changeHandler}
+                  />
+                </InputGroup>
+              </FormControl>
+
+              <FormControl>
+                <InputGroup>
+                  <InputLeftElement
+                    pointerEvents="none"
+                    children={<PhoneIcon color="gray.300" />}
+                  />
+                  <Input
+                    type="number"
+                    placeholder="Number"
+                    name="number"
+                    value={signUpDetails.number}
                     onChange={changeHandler}
                   />
                 </InputGroup>

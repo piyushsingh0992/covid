@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { stateData } from "./data";
+
+import { stateData } from "../../utils/constant";
 import { Box, Textarea, Select, Flex, Button } from "@chakra-ui/react";
 import { Input } from "@chakra-ui/react";
 import { ListItem, UnorderedList } from "@chakra-ui/react";

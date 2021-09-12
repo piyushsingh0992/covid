@@ -1,5 +1,5 @@
 import React ,{useState}from "react";
-import { stateData } from "./data";
+import { stateData } from "../../utils/constant";
 import { Box, Textarea, Select, Flex, Button } from "@chakra-ui/react";
 import { toast } from "react-toastify";
 const AddResources = () => {

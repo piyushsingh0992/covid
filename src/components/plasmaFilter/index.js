@@ -4,7 +4,7 @@ import {
   Flex,
   Checkbox,
 } from "@chakra-ui/react";
-import { stateData } from "./data";
+import { stateData } from "../../utils/constant";
 const ResourceFilters = () => {
   return (
     <Flex

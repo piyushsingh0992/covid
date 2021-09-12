@@ -14,7 +14,7 @@ import { MdEmail } from "react-icons/md";
 
 import { PhoneIcon } from "@chakra-ui/icons";
 import { toast } from "react-toastify";
-import { stateData } from "./data";
+import { stateData } from "../../utils/constant";
 const CFaUserAlt = chakra(FaUserAlt);
 const CMdEmail = chakra(MdEmail);
 

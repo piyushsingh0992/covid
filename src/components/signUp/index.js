@@ -19,7 +19,7 @@ import logo from "../../assets/brand-icon-2.png";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { PhoneIcon } from "@chakra-ui/icons";
 import { toast } from "react-toastify";
-import { stateData } from "./data";
+import { stateData } from "../../utils/constant";
 import { MdEmail } from "react-icons/md";
 const CMdEmail = chakra(MdEmail);
 const CFaUserAlt = chakra(FaUserAlt);

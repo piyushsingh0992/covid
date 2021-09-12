@@ -3,7 +3,7 @@ import Navbar from "../../components/navbar";
 import { Container } from "@chakra-ui/react";
 import SignIn from "../../components/signIn";
 import SignUp from "../../components/signUp";
-import { Routes, Route } from "react-router-dom";
+
 const Login = () => {
   const [currentModal, currentModalSetter] = useState(true);
   const [signInDetails, signInDetailsSetter] = useState({

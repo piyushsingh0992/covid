@@ -1,5 +1,14 @@
 import React from "react";
-import { Flex, Spacer, Heading, Text, Center, Image,Box,Icon } from "@chakra-ui/react";
+import {
+  Flex,
+  Spacer,
+  Heading,
+  Text,
+  Center,
+  Image,
+  Box,
+  Icon,
+} from "@chakra-ui/react";
 import { IoFastFood } from "react-icons/io5";
 import { FaHandsHelping } from "react-icons/fa";
 import { GiHealthNormal } from "react-icons/gi";
@@ -7,7 +16,10 @@ import { RiDashboardFill } from "react-icons/ri";
 import { IoLogOut } from "react-icons/io5";
 import brandIcon from "../../assets/brand-icon-2.png";
 import { Link } from "react-router-dom";
+import {  useSelector } from "react-redux";
+import { CgProfile } from "react-icons/cg";
 const Navbar = () => {
+  const token = useSelector((state) => state.auth.token);
   return (
     <Flex
       p="1"
@@ -53,8 +65,12 @@ const Navbar = () => {
         </Link>
         <Link to="/plasma">
           <Center w={["50px", "50px", "100px"]}>
-          
-            <Icon as={GiHealthNormal} w={6} h={6} d={["block", "block", "none"]} />
+            <Icon
+              as={GiHealthNormal}
+              w={6}
+              h={6}
+              d={["block", "block", "none"]}
+            />
             <Text fontSize="md" d={["none", "none", "block"]}>
               Plasma Donar
             </Text>
@@ -72,15 +88,24 @@ const Navbar = () => {
               DashBoard
             </Text>
           </Center>
-          </Link>
-        <Link to="/login">
-        <Box w={["50px", "50px", "70px"]}>
-          <Icon as={IoLogOut} w={6} h={6} d={["block", "block", "none"]} />
-          <Text fontSize="md" d={["none", "none", "block"]}>
-            Login
-          </Text>
-        </Box>
         </Link>
+        {token ? (
+          <Box w={["50px", "50px", "70px"]}>
+            <Icon as={IoLogOut} w={6} h={6} d={["block", "block", "none"]} />
+            <Text fontSize="md" d={["none", "none", "block"]}>
+              Logout
+            </Text>
+          </Box>
+        ) : (
+          <Link to="/login">
+            <Box w={["50px", "50px", "70px"]}>
+              <Icon as={CgProfile} w={6} h={6} d={["block", "block", "none"]} />
+              <Text fontSize="md" d={["none", "none", "block"]}>
+                Login
+              </Text>
+            </Box>
+          </Link>
+        )}
       </Flex>
     </Flex>
   );
